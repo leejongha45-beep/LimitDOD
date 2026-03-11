@@ -1,0 +1,16 @@
+BasedOnStyle: LLVM
+IndentWidth: 4
+UseTab: Always
+TabWidth: 4
+BreakBeforeBraces: Allman
+ColumnLimit: 150
+SpaceAfterCStyleCast: false
+SpacesInParentheses: false
+SpaceBeforeParens: ControlStatements
+SpaceInEmptyParentheses: false
+Cpp11BracedListStyle: false
+InsertBraces: false
+AllowShortFunctionsOnASingleLine: None
+AlwaysBreakTemplateDeclarations: Yes
+BreakConstructorInitializers: AfterColon
+PackConstructorInitializers: Never
