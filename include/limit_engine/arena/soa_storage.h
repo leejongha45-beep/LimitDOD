@@ -1,7 +1,7 @@
 #pragma once
 
-#include <limit/limit.h>
 #include <cstddef>
+#include <limit/limit.h>
 #include <tuple>
 
 namespace lmt::engine
@@ -63,4 +63,4 @@ struct SoATable
 	}
 };
 
-} /** namespace lmt::engine */
+} // namespace lmt::engine

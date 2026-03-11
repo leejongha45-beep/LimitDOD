@@ -4,6 +4,7 @@ UseTab: Always
 TabWidth: 4
 BreakBeforeBraces: Allman
 ColumnLimit: 150
+PointerAlignment: Left
 SpaceAfterCStyleCast: false
 SpacesInParentheses: false
 SpaceBeforeParens: ControlStatements
@@ -11,6 +12,6 @@ SpaceInEmptyParentheses: false
 Cpp11BracedListStyle: false
 InsertBraces: false
 AllowShortFunctionsOnASingleLine: None
-AlwaysBreakTemplateDeclarations: Yes
+BreakTemplateDeclarations: Yes
 BreakConstructorInitializers: AfterColon
 PackConstructorInitializers: Never
