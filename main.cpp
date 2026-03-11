@@ -48,6 +48,23 @@ int main()
 	printf("velocities[0] = { %.1f, %.1f, %.1f }\n", table.velocity()[0].x, table.velocity()[0].y, table.velocity()[0].z);
 	printf("count = %zu\n", table.count);
 
+	/** forEach 순회 — pos += vel */
+	table.push(Vec3{ 1.0f, 2.0f, 3.0f }, Vec3{ 0.1f, 0.2f, 0.3f });
+	table.push(Vec3{ 10.0f, 20.0f, 30.0f }, Vec3{ 1.0f, 2.0f, 3.0f });
+
+	table.forEach([](Vec3& pos, Vec3& vel) {
+		pos.x += vel.x;
+		pos.y += vel.y;
+		pos.z += vel.z;
+	});
+
+	printf("\n--- after forEach ---\n");
+	for (size_t i = 0; i < table.count; i++)
+	{
+		printf("positions[%zu] = { %.1f, %.1f, %.1f }\n", i,
+			table.position()[i].x, table.position()[i].y, table.position()[i].z);
+	}
+
 	delete[] buffer;
 	return 0;
 }

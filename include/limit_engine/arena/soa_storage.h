@@ -3,6 +3,7 @@
 #include <cstddef>
 #include <limit/limit.h>
 #include <tuple>
+#include <utility>
 
 namespace lmt::engine
 {
@@ -15,12 +16,12 @@ namespace lmt::engine
 template <typename... Columns>
 struct SoATable
 {
-	std::tuple<Columns *...> data;
+	std::tuple<Columns*...> data;
 	size_t capacity = 0;
 	size_t count = 0;
 
 	/** 아레나에서 컬럼당 cap개만큼 메모리를 연속 할당 */
-	SoATable(lmt::Continuum &arena, size_t cap) :
+	SoATable(lmt::Continuum& arena, size_t cap) :
 		data{ arena.alloc<Columns>(cap)... },
 		capacity(cap)
 	{
@@ -57,9 +58,24 @@ struct SoATable
 
 	/** I번째 컬럼의 원시 배열 포인터 반환 */
 	template <size_t I>
-	auto *column()
+	auto* column()
 	{
 		return (std::get<I>(data));
+	}
+
+	template <typename Func, size_t... I>
+	void forEach_impl(Func& func, size_t index, std::index_sequence<I...>)
+	{
+		func(std::get<I>(data)[index]...);
+	}
+
+	template <typename Func>
+	void forEach(Func func)
+	{
+		for (size_t i = 0; i < count; i++)
+		{
+			forEach_impl(func, i, std::index_sequence_for<Columns...>{});
+		}
 	}
 };
 
